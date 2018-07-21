@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-pleroma",
-  "version": "0.0.1",
-  "repository" : {
+  "version": "0.0.2",
+  "repository": {
     "type": "git",
     "url": "https://gitlab.com/foggy1/gatsby-source-pleroma"
   },
