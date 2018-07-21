@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Austin Lanari <austin.lanari@gmail.com (https://austinlanari.com)",
+  "author": "Austin Lanari <austin.lanari@gmail.com> (https://austinlanari.com)",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0"
