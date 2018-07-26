@@ -2,10 +2,10 @@
   "name": "gatsby-source-pleroma",
   "version": "0.0.5",
   "repository": {
-    "type": "git",
     "url": "https://gitlab.com/foggy1/gatsby-source-pleroma"
   },
   "description": "gatsby-source plugin for Pleroma federated social network feed",
+  "homepage": "https://gitlab.com/foggy1/gatsby-source-pleroma",
   "main": "gatsby-node.js",
   "scripts": {
     "build": "babel src --out-dir .",
