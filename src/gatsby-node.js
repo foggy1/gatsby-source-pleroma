@@ -29,6 +29,7 @@ exports.sourceNodes = async (
 
     const nodeData = {
       ...post,
+      attachments: [...post.attachments],
       id: nodeId,
       parent: null,
       children: [],
