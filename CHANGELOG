@@ -1,0 +1,6 @@
+### [v1.1.0]
+#### Added
+* Placeholder attachment so that builds with no attachments don't break declarations looking for it in the schema
+* Explanation in README of attachment change as well as a large but straightforward graphql query example
+#### Removed
+* Useless count param that was ignored by API
