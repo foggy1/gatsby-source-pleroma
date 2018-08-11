@@ -17,7 +17,8 @@ module.exports = {
      resolve: 'gatsby-source-pleroma',
      options: {
        instance: 'https://pleroma.example.site', // required
-       userId: 1, // required
+       userId: 1, // required,
+       pages: 2 // optional
      }
    }
  ]
@@ -27,7 +28,8 @@ module.exports = {
 ## Options
 When requiring the plugin, there are several options that must be passed down and a few that can be optionally passed down, in order to determine whose data you are including and exactly how much.
 * `instance` (required): The url (no trailing slash!) of the instance to which the user belongs. e.g. if you're signed up for pleroma at the main `https://pleroma.site`, you would use that exact string.
-* `userId` (required): The integer id of the user for whom the feed is being fetched. When visiting a user profile on Pleroma, you can find this id in the url e.g. a userId of 1 is indicated by `https://pleroma.site/users/1`.
+* `userId` (required): The integer id **or** username of the user for whom the feed is being fetched. When visiting a user profile on Pleroma, you can find this id in the url e.g. a userId of 1 is indicated by `https://pleroma.site/users/1`. This also goes for userId of 'foggy', which would be `https://pleroma.site/users/foggy`.
+* `pages` (optional | default: 1): If you would like to paginate from more than just the latest 20 posts in a pleroma feed, pass this option.
 
 ## Usage
 Pleroma data from the given user's feed will be included as `allPleromaPost` in Gatsby's graphQL infrastructure.
