@@ -14,9 +14,10 @@ exports.sourceNodes = async (
 
   // URL to the pleroma instance (no trailing slash) and your userId are **required**
   const { instance, userId } = configOptions
+  // Default is to grab a single page
+  const pages = configOptions.pages || 1
 
-
-  // Note: as of 7/28/18, the `count` param doesn't actually do anything: it's ALWAYS 20.
+  // Note: as of 7/28/18, the `count` param doesn't actually do anything: its ALWAYS 20.
   //const count = configOptions.count || 20
 
   const apiUrl = `${instance}/api/qvitter/statuses/user_timeline.json?user_id=${userId}`
@@ -37,6 +38,7 @@ exports.sourceNodes = async (
     const nodeData = {
       ...post,
       attachments: post.attachments.length ? post.attachments : [attachmentPlaceholder],
+      in_reply_to_status_id: post.in_reply_to_status_id || 0,
       id: nodeId,
       parent: null,
       children: [],
@@ -50,6 +52,23 @@ exports.sourceNodes = async (
     return nodeData
   }
 
+  const nextPage = (data, pages) => {
+    const maxId = data[data.length - 1].id
+    const nextUrl = apiUrl + `&max_id=${maxId}`
+    axios.get(nextUrl)
+      .then(({data}) => {
+        if (!data || !data.length) { return }
+        data.forEach(post => {
+          const nodeData = processPost(post)
+          createNode(nodeData)
+        })
+        if (pages > 0) {
+          nextPage(data, pages - 1)
+        }
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     axios.get(apiUrl)
       .then(({data}) => {
@@ -57,6 +76,9 @@ exports.sourceNodes = async (
           const nodeData = processPost(post)
           createNode(nodeData)
         })
+        if (pages > 1) {
+          nextPage(data, pages)
+        }
       })
       .catch(err => {
         console.log('Error fetching from Pleroma Source!', err)
