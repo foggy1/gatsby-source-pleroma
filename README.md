@@ -8,6 +8,7 @@ Source plugin for pulling data into [Gatsby](https://www.gatsbyjs.org/) from a s
     * `npm install gatsby-source-pleroma --save`
     * `yarn add gatsby-source-pleroma`
 * Update your `gatsby-config.js` file with the following:
+
 ```
 module.exports = {
  siteMetadata: { ... },

@@ -1,0 +1,12 @@
+### [v1.2.0]
+#### Added
+* Pagination option using max_id param to traverse post history
+#### Changed
+* Updated readme for pagination and to clarify use of username
+
+### [v1.1.0]
+#### Added
+* Placeholder attachment so that builds with no attachments don't break declarations looking for it in the schema
+* Explanation in README of attachment change as well as a large but straightforward graphql query example
+#### Removed
+* Useless count param that was ignored by API
